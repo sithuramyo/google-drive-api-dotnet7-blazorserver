@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using GoogleDriveAPI.DTOs;
+using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace GoogleDriveAPI.EFDBContext
@@ -8,5 +9,6 @@ namespace GoogleDriveAPI.EFDBContext
         public AppDBContext(DbContextOptions<AppDBContext> options) : base(options)
         {
         }
+        public DbSet<FileSystemDTO> File { get; set; }
     }
 }

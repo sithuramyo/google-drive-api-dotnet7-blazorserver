@@ -1,0 +1,30 @@
+﻿@page "/filesystem"
+@inject AppDBContext _db
+
+<h1>FileSystem</h1>
+<MudTextField @bind-Value="file.Name" Label="Name" Variant="Variant.Outlined"></MudTextField>
+<MudFileUpload T="IReadOnlyList<IBrowserFile>" Multiple>
+    <ButtonTemplate>
+        <MudButton HtmlTag="label"
+                   Variant="Variant.Filled"
+                   Color="Color.Secondary"
+                   for="@context">
+            Multiple Files
+        </MudButton>
+    </ButtonTemplate>
+    <SelectedTemplate>
+        @if (context != null)
+        {
+            @foreach (var file in context)
+            {
+                <MudText>@file.Name</MudText>
+            }
+        }
+        else
+        {
+            <MudText>No Files</MudText>
+        }
+    </SelectedTemplate>
+</MudFileUpload>
+<MudButton Variant="Variant.Outlined" Color="Color.Success" OnClick="Save">Save</MudButton>
+
