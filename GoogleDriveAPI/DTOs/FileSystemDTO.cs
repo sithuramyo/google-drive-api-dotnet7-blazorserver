@@ -6,7 +6,7 @@ namespace GoogleDriveAPI.DTOs
     public class FileSystemDTO
     {
         public long Id { get; set; }
-        public string Name { get; set; }
-        public string FileSystemName { get; set; }
+        public required string Name { get; set; }
+        public required string FileSystemName { get; set; }
     }
 }

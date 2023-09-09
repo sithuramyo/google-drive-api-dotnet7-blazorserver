@@ -8,5 +8,6 @@ namespace GoogleDriveAPI.Models
         public string Name { get; set; }
         public IFormFile FileSystem { get; set; }
         public string FileSystemName { get => FileSystem?.FileName.ToUniqueName(); }
+
     }
 }

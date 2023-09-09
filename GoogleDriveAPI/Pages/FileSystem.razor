@@ -2,29 +2,26 @@
 @inject AppDBContext _db
 
 <h1>FileSystem</h1>
-<MudTextField @bind-Value="file.Name" Label="Name" Variant="Variant.Outlined"></MudTextField>
-<MudFileUpload T="IReadOnlyList<IBrowserFile>" Multiple>
-    <ButtonTemplate>
-        <MudButton HtmlTag="label"
-                   Variant="Variant.Filled"
-                   Color="Color.Secondary"
-                   for="@context">
-            Multiple Files
-        </MudButton>
-    </ButtonTemplate>
-    <SelectedTemplate>
-        @if (context != null)
-        {
-            @foreach (var file in context)
-            {
-                <MudText>@file.Name</MudText>
-            }
-        }
-        else
-        {
-            <MudText>No Files</MudText>
-        }
-    </SelectedTemplate>
-</MudFileUpload>
-<MudButton Variant="Variant.Outlined" Color="Color.Success" OnClick="Save">Save</MudButton>
+<MudGrid>
+    <MudItem xs="12" sm="7">
+        <MudCard>
+            <MudCardContent>
+                <MudTextField @bind-Value="file.Name" Label="Name" Variant="Variant.Text" For="@(() => file.Name)"></MudTextField>
+            </MudCardContent>
+            <MudCardContent>
+                <MudFileUpload T="IBrowserFile" OnFilesChanged="OnInputFileChanged">
+                    <ButtonTemplate>
+                        <MudFab HtmlTag="label"
+                                Color="Color.Success"
+                                Icon="@Icons.Material.Filled.AttachFile"
+                                for="@context" />
+                    </ButtonTemplate>
+                </MudFileUpload>
+            </MudCardContent>
+            <MudCardActions>
+                <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled"  Color="Color.Primary" Class="ml-auto">Save</MudButton>
+            </MudCardActions>
+        </MudCard>
+    </MudItem>
+</MudGrid>
 
