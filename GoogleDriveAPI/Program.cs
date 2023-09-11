@@ -1,5 +1,6 @@
 using GoogleDriveAPI.Data;
 using GoogleDriveAPI.EFDBContext;
+using GoogleDriveAPI.GoogleDriveServices;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +17,7 @@ builder.Services.AddDbContext<AppDBContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection"));
 });
-
+builder.Services.AddScoped<GoogleDriveService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
