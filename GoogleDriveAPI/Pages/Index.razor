@@ -49,15 +49,19 @@
         var fileMetadata = new Google.Apis.Drive.v3.Data.File()
             {
                 Name = fileNames[0],
-                Parents = new[] { _service.GetGoogleDriveFolderId() }, 
+                Parents = new[] { _service.GetGoogleDriveFolderId() },
             };
-        var data = await _service.UploadToGoogleDrive(filePath, fileMetadata);
-        if (!string.IsNullOrWhiteSpace(data))
+        // var data = await _service.UploadToGoogleDrive(filePath, fileMetadata);
+        // if (!string.IsNullOrWhiteSpace(data))
+        // {
+        //     if (File.Exists(filePath))
+        //     {
+        //         File.Delete(filePath);
+        //     }
+        // }
+        if (File.Exists(filePath))
         {
-            if (File.Exists(filePath))
-            {
-                File.Delete(filePath);
-            }
+            File.Delete(filePath);
         }
         Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopCenter;
         Snackbar.Add("TODO: Upload your files!", Severity.Normal);
@@ -75,13 +79,15 @@
 
     private async Task<string> SaveFile(IBrowserFile fileContent)
     {
+        long maxFileSize = 9919193 * 100;
+        string extension = fileContent.ContentType.Split("/")[1].ToLower();
         string fileName = Guid.NewGuid().ToString("N");
         string folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
             "ForGoogleDrive");
         Directory.CreateDirectory(folderPath);
-        string filePath = Path.Combine(folderPath, $"{fileName}.png");
+        string filePath = Path.Combine(folderPath, $"{fileName}.{extension}");
         await using FileStream fs = new(filePath, FileMode.Create);
-        await fileContent.OpenReadStream().CopyToAsync(fs);
+        await fileContent.OpenReadStream(maxFileSize).CopyToAsync(fs);
         fs.Dispose();
 
         return filePath;
