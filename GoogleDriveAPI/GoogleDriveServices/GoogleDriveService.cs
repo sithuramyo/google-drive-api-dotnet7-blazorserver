@@ -63,5 +63,11 @@ namespace GoogleDriveAPI.GoogleDriveServices
                 }
             }
         }
+
+        public async Task DeleteFile(string fileId)
+        {
+            var service = GetGoogleDriveService();
+            string status = await service.Files.Delete(fileId).ExecuteAsync();
+        }
     }
 }
