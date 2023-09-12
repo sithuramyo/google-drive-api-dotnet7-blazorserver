@@ -8,6 +8,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="EntityFramework" Version="6.4.4" />
+		<PackageReference Include="Google.Apis.Auth" Version="1.62.0" />
+		<PackageReference Include="Google.Apis.Drive.v3" Version="1.62.0.3155" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.10" />
 		<PackageReference Include="MudBlazor" Version="6.9.0" />
 	</ItemGroup>
