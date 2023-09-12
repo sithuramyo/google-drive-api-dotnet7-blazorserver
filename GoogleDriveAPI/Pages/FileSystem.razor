@@ -6,10 +6,10 @@
     <MudItem xs="12" sm="7">
         <MudCard>
             <MudCardContent>
-                <MudTextField @bind-Value="file.Name" Label="Name" Variant="Variant.Text" For="@(() => file.Name)"></MudTextField>
+                <MudTextField @bind-Value="fileModel.Name" Label="Name" Variant="Variant.Text" For="@(() => fileModel.Name)"></MudTextField>
             </MudCardContent>
             <MudCardContent>
-                <MudFileUpload T="IBrowserFile" OnFilesChanged="OnInputFileChanged">
+                <MudFileUpload T="IBrowserFile" OnFilesChanged="LoadFiles">
                     <ButtonTemplate>
                         <MudFab HtmlTag="label"
                                 Color="Color.Success"
@@ -19,7 +19,7 @@
                 </MudFileUpload>
             </MudCardContent>
             <MudCardActions>
-                <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled"  Color="Color.Primary" Class="ml-auto">Save</MudButton>
+                <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" OnClick="Save"  Color="Color.Primary" Class="ml-auto">Save</MudButton>
             </MudCardActions>
         </MudCard>
     </MudItem>

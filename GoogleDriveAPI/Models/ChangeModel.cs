@@ -11,7 +11,7 @@ namespace GoogleDriveAPI.Models
             {
                 Id = model.Id,
                 Name = model.Name,
-                FileSystemName = model.FileSystemName
+                FileName = model.FileName
             };
         }
     }
