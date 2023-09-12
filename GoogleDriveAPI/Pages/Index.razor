@@ -51,18 +51,15 @@
                 Name = fileNames[0],
                 Parents = new[] { _service.GetGoogleDriveFolderId() },
             };
-        // var data = await _service.UploadToGoogleDrive(filePath, fileMetadata);
-        // if (!string.IsNullOrWhiteSpace(data))
-        // {
-        //     if (File.Exists(filePath))
-        //     {
-        //         File.Delete(filePath);
-        //     }
-        // }
-        if (File.Exists(filePath))
+        var data = await _service.UploadToGoogleDrive(filePath, fileMetadata);
+        if (!string.IsNullOrWhiteSpace(data))
         {
-            File.Delete(filePath);
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
         }
+        
         Snackbar.Configuration.PositionClass = Defaults.Classes.Position.TopCenter;
         Snackbar.Add("TODO: Upload your files!", Severity.Normal);
     }
