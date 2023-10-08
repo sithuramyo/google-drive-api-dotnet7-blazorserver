@@ -9,8 +9,8 @@ namespace GoogleDriveAPI.GoogleDriveServices
     public class GoogleDriveService
     {
         private readonly IConfiguration _configuration;
-        private readonly string credentialFile = "dabria.json";
-        //private readonly string credentialFile = "GoogleDriveAPICredential.json";
+        //private readonly string credentialFile = "dabria.json";
+        private readonly string credentialFile = "GoogleDriveAPICredential.json";
         public GoogleDriveService(IConfiguration configuration)
         {
             _configuration = configuration;
